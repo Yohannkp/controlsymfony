@@ -1,0 +1,328 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+
+{% if is_granted('ROLE_ADMIN') %}
+
+
+<a href="{{ path('app_article_new') }}">Ajouter un article</a>
+<a href="{{ path('app_categorie_index') }}">Ajouter une categorie</a>
+
+{% elseif is_granted('ROLE_USER') %}
+Connecter en tand que Utilisateur
+{% else %}
+Anonymous
+{% endif %}
+    
+
+
+    <!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>Directory Landing Page</title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="{{asset('assets/logo/favicon.png')}}"/>
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="{{asset('assets/css/linearicons.css')}}">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+
+		<!--flaticon.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
+
+		<!--slick.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/slick-theme.css')}}">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="{{asset('assets/css/bootsnav.css')}}" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		
+        <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+	
+	<body>
+		<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+		<!--header-top end -->
+
+		<!-- top-area Start -->
+		
+		<!-- top-area End -->
+
+		<!--welcome-hero start -->
+		<section id="home" class="welcome-hero">
+			</div>
+
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->
+
+		<!--list-topics start -->
+		<section id="list-topics" class="list-topics">
+			
+			<div class="container">
+				<div class="list-topics-content">
+					<ul>
+						{% for categorie in categories %}
+						<li>
+							<a href="{{path('triparcategorie',{'id' : categorie.id})}}">
+								<div class="single-list-topics-content">
+									<div class="single-list-topics-icon">
+										<i class="flaticon-restaurant"></i>
+									</div>
+									<h2><a href="#">{{categorie.titre}}</a></h2>
+									<p></p>
+								</div>
+							</a>
+							
+						</li>
+						{% else %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.list-topics-->
+		<!--list-topics end-->
+
+		<!--works start -->
+	
+
+
+
+
+
+
+
+
+
+
+        
+
+		<!--explore start -->
+		<section id="explore" class="explore">
+			<div class="container">
+				<div class="section-header">
+					<h2>Liste des articles</h2>
+					<p>Ici se trouve la liste de tous les articles disponibles</p>
+				</div><!--/.section-header-->
+				<div class="explore-content">
+					<div class="row">
+
+                        {% for article in articles %}
+
+                        <div class=" col-md-4 col-sm-6">
+							<a href="{{path('app_article_show',{'id' : article.id})}}">
+								<div class="single-explore-item">
+									<div class="single-explore-img">
+										<img src="https://i.pinimg.com/564x/a7/59/78/a759786876e179bdd2356193b75d8a91.jpg" alt="explore image">
+										<div class="single-explore-img-info">
+											<button onclick="window.location.href='#'">best rated</button>
+											<div class="single-explore-image-icon-box">
+												<ul>
+													<li>
+														<div class="single-explore-image-icon">
+															<i class="fa fa-arrows-alt"></i>
+														</div>
+													</li>
+													<li>
+														<div class="single-explore-image-icon">
+															<i class="fa fa-bookmark-o"></i>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="single-explore-txt bg-theme-1">
+										<h2><a href="#">{{ article.Titre }}</a></h2>
+										<p class="explore-rating-price">
+											<span class="explore-rating">5.0</span>
+											<a href="#"> 10 ratings</a> 
+											<span class="explore-price-box">
+												form
+												<span class="explore-price">5$-300$</span>
+											</span>
+											 <a href="#">resturent</a>
+										</p>
+										<div class="explore-person">
+											<div class="row">
+												
+												<div class="col-sm-10">
+													<p>
+														{{ article.Contenu }}
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="explore-open-close-part">
+											<div class="row">
+												<div class="col-sm-5">
+													{% if is_granted('ROLE_ADMIN') %}
+	
+													<a class="btn btn-warning" href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+	{% elseif is_granted('ROLE_USER') %}
+	<a class="btn btn-primary" href="{{ path('commenterarticle', {'id': article.id}) }}">Commenter</a>
+	{% else %}
+	
+	{% endif %}
+										
+													
+												</div>
+												<div class="col-sm-7">
+													<div class="explore-map-icon">
+														<a href="#"><i data-feather="map-pin"></i></a>
+														<a href="#"><i data-feather="upload"></i></a>
+														<a href="#"><i data-feather="heart"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						
+						</div>
+            
+                    
+              
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+						
+						
+					</div>
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.explore-->
+		<!--explore end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="assets/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="assets/js/bootsnav.js"></script>
+
+        <!--feather.min.js-->
+        <script  src="assets/js/feather.min.js"></script>
+
+        <!-- counter js -->
+		<script src="assets/js/jquery.counterup.min.js"></script>
+		<script src="assets/js/waypoints.min.js"></script>
+
+        <!--slick.min.js-->
+        <script src="assets/js/slick.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		     
+        <!--Custom JS-->
+        <script src="assets/js/custom.js"></script>
+        
+    </body>
+	
+</html>
+{% endblock %}

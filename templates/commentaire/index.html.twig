@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block body %}
+    <h1>Commentaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Commentaire</th>
+                <th>Datepublication</th>
+                <th>Article</th>
+                <th>Etat</th>
+                {% if is_granted("ROLE_ADMIN") %}
+                <th>actions</th>
+                    {% else %}
+
+                    {% endif %}
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.Commentaire }}</td>
+                <td>{{ commentaire.Datepublication ? commentaire.Datepublication|date('Y-m-d H:i:s') : '' }}</td>
+                <th>{{ commentaire.article.titre}}</th>
+                <td>{{ commentaire.Etat ? 'Activé' : 'Désactivé' }}</td>
+                <td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{path('app_comm_activ_desactive', {'id' : commentaire.id })}}">{{ commentaire.Etat ? 'Désactiver' : 'Activer' }}</a>
+                    <a href="{{ path('app_commentaire_show', {'id': commentaire.id}) }}">show</a>
+                    <a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}">edit</a>
+                    
+                    {% else %}
+
+                    {% endif %}
+
+                    </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted("ROLE_ADMIN") %}
+    
+    {% else %}
+
+    {% endif %}
+
+    
+{% endblock %}

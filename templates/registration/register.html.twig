@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+
+<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+    <meta name="description" content="Davur - Restaurant Django Admin Dashboard + FrontEnd" />
+	<meta property="og:title" content="Davur - Restaurant Django Admin Dashboard + FrontEnd" />
+	<meta property="og:description" content="Davur - Restaurant Django Admin Dashboard + FrontEnd" />
+	<meta property="og:image" content="https://davur.dexignzone.com/django/social-image.png" />
+	<meta name="format-detection" content="telephone=no">
+    <title>Davur - Restaurant Django Admin Dashboard + FrontEnd</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('static/frontend/images/favicon.png')}}">
+
+
+    
+
+    
+    <link rel="stylesheet" href="{{asset('static/davur/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('static/davur/css/style.css')}}">
+        {% endblock %}
+
+
+        {% block javascripts %}
+        
+<script src="{{asset('static/davur/vendor/global/global.min.js')}}"></script>
+
+<script src="{{asset('static/davur/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+
+
+
+
+
+<script src="{{asset('static/davur/js/custom.js')}}"></script>
+
+<script src="{{asset('static/davur/js/deznav-init.js')}}"></script>
+
+
+
+
+<script>
+	$("#Admin").click(function() {
+	  let email = document.getElementById("id_email");
+	  email.value = "admin@example.com";
+	  let password = document.getElementById("dz-password")
+	  password.value = "asdf@1234";
+	});
+	$("#Manager").click(function() {
+	  let email = document.getElementById("id_email").value = "manager@example.com";
+	  let password = document.getElementById("dz-password").value = "asdf@1234";
+	});
+	$("#Customer").click(function() {
+	  let email = document.getElementById("id_email").value = "customer@example.com";
+	  let password = document.getElementById("dz-password").value = "asdf@1234";
+	});
+  </script>
+
+        {% endblock %}
+
+
+{% block body %}
+    <h1>Register</h1>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <body class="h-100">
+        <div class="authincation h-100">
+            <div class="container h-100">
+                <div class="row justify-content-center h-100 align-items-center">
+                    <div class="col-md-6">
+                        <div class="authincation-content">
+                            <div class="row no-gutters">
+                                <div class="col-xl-12">
+                                    <div class="auth-form">
+                                        <div class="text-center mb-3">
+                                            <a href="../index/"><img src="../static/davur/images/logo-full.png" alt=""></a>
+                                        </div>
+                                        <h4 class="text-center mb-4">Sign up your account</h4>
+                                        
+    
+
+                                        {{ form_errors(registrationForm) }}
+                                        {{ form_start(registrationForm) }}
+                                        <div class="row">
+    
+                                            <div class="mb-3">
+                                                <label class="mb-1">Email</label>
+                                              
+                                                {{ form_row(registrationForm.email, {
+                                                    label: ' '
+                                                }) }}
+                                                <div class="text-danger w-100 d-block mt-1">
+                                                    
+                                                    </div>
+                                            
+                                            </div>
+
+                                            <div class="mb-3 col-md-6">
+                                                <label class="mb-1">First Name</label>
+                                                {{ form_row(registrationForm.nom, {
+                                                    label: ' '
+                                                }) }}
+                                                <div class="text-danger w-100 d-block mt-1">
+                                                    
+                                                    </div>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="mb-1">Last Name</label>
+                                                {{ form_row(registrationForm.prenom, {
+                                                    label: ' '
+                                                }) }}
+                                                <div class="text-danger w-100 d-block mt-1">
+                                                    
+                                                    </div>
+                                            </div>
+
+
+
+                                            <div class="mb-3">
+                                                <label class="mb-1">Password</label>
+                                                {{ form_row(registrationForm.plainPassword, {
+                                                    label: ' '
+                                                }) }}<div class="text-danger w-100 d-block mt-1">
+                                                    
+                                                    </div>
+                                            </div>
+
+
+
+                                            {{ form_row(registrationForm.agreeTerms) }}
+                                            
+                                            <div class="text-center mt-4">
+                                                <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
+                                            </div>
+                                        </div> 
+                                        
+
+                                       
+                                        
+                                
+                                        <button type="submit" class="btn">Register</button>
+                                    {{ form_end(registrationForm) }}
+                                    
+                                
+                                
+    
+                                       
+                                        <div class="new-account mt-3">
+                                            <p>Already have an account? <a class="text-primary" href="/login/">Sign in</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

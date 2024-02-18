@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block stylesheets %}
+
+<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+    <meta name="description" content="Davur - Restaurant Django Admin Dashboard + FrontEnd" />
+	<meta property="og:title" content="Davur - Restaurant Django Admin Dashboard + FrontEnd" />
+	<meta property="og:description" content="Davur - Restaurant Django Admin Dashboard + FrontEnd" />
+	<meta property="og:image" content="https://davur.dexignzone.com/django/social-image.png" />
+	<meta name="format-detection" content="telephone=no">
+    <title>Davur - Restaurant Django Admin Dashboard + FrontEnd</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('static/frontend/images/favicon.png')}}">
+
+
+    
+
+    
+    <link rel="stylesheet" href="{{asset('static/davur/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('static/davur/css/style.css')}}">
+        {% endblock %}
+
+
+        {% block javascripts %}
+        
+<script src="{{asset('static/davur/vendor/global/global.min.js')}}"></script>
+
+<script src="{{asset('static/davur/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+
+
+
+
+
+<script src="{{asset('static/davur/js/custom.js')}}"></script>
+
+<script src="{{asset('static/davur/js/deznav-init.js')}}"></script>
+
+
+
+
+<script>
+	$("#Admin").click(function() {
+	  let email = document.getElementById("id_email");
+	  email.value = "admin@example.com";
+	  let password = document.getElementById("dz-password")
+	  password.value = "asdf@1234";
+	});
+	$("#Manager").click(function() {
+	  let email = document.getElementById("id_email").value = "manager@example.com";
+	  let password = document.getElementById("dz-password").value = "asdf@1234";
+	});
+	$("#Customer").click(function() {
+	  let email = document.getElementById("id_email").value = "customer@example.com";
+	  let password = document.getElementById("dz-password").value = "asdf@1234";
+	});
+  </script>
+
+        {% endblock %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+	
+    
+    
+    
+    
+    
+
+</head>
+
+<body class="h-100">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+									<div class="text-center mb-3">
+										<a href="/index/"><img src="/static/davur/images/logo-full.png" alt=""></a>
+									</div>
+                                    <h4 class="text-center mb-4">Connectez vous a votre compte</h4>
+
+									
+
+
+
+
+ 
+                                    <form method="post" action="{{path('app_login')}}"><input type="hidden" name="csrfmiddlewaretoken" value="wvuIOarf0U23KtaWRIkPZAxkT6dCu9AgPz54HmFEZf86YqE5MdZLQnv7DFbm4zSA">
+                                        <div class="form-group">
+                                            <label class="mb-1"><strong>Email</strong></label>
+											<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+											<div class="text-danger w-100 d-block mt-1">
+											  
+											</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mb-1"><strong>Password</strong></label>
+											<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                            <div class="text-danger w-100 d-block mt-1">
+											  
+											</div>
+                                        </div>
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                        <div class="form-row d-flex justify-content-between mt-4 mb-2 flex-wrap">
+                                            <div class="form-group">
+                                               <div class="custom-control custom-checkbox me-2 ">
+													<input type="checkbox" class="form-check-input mt-0" id="basic_checkbox_1">
+													<label class="custom-control-label ms-2 mb-0" for="basic_checkbox_1">Remember my preference</label>
+												</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <a href="#">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-block">Valider</button>
+                                        </div>
+                                    </form>
+                                    <div class="new-account mt-3">
+                                        <p>Vous avez pas encore de compte ? <a class="text-primary" href="/register/">Inscription</a></p>
+                                    </div>
+                                <hr/>
+                             
+								
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!--**********************************
+	Scripts
+***********************************-->
+<!-- Required vendors -->
+
+
+</html>
+
+
+{% endblock %}
